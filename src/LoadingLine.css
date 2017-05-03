@@ -1,0 +1,39 @@
+.ll-container {
+  width: 100%;
+}
+.ll-line {
+  width: 5px;
+  height: 2px;
+  background-color: #d12a0a;
+  transition: 0.5s width ease 0s, 0.3s height 0.5s;
+  -webkit-box-shadow: 0px 1px 3px 0px #d12a0a;
+  -moz-box-shadow:    0px 1px 3px 0px #d12a0a;
+  box-shadow:         0px 1px 3px 0px #d12a0a;
+}
+.ll-hide {
+  height: 0;
+}
+.ll-error {
+  transition: 0.7s height 3s;
+  animation-name: shadow-error;
+  animation-duration: 1s;
+  animation-iteration-count: 3;
+}
+
+@keyframes shadow-error {
+    from {
+      -webkit-box-shadow: 0px 1px 3px 0px #d12a0a;
+      -moz-box-shadow:    0px 1px 3px 0px #d12a0a;
+      box-shadow:         0px 1px 3px 0px #d12a0a;
+    }
+    50% {
+      -webkit-box-shadow: 0px 2px 8px 0px #d12a0a;
+      -moz-box-shadow:    0px 2px 8px 0px #d12a0a;
+      box-shadow:         0px 2px 8px 0px #d12a0a;
+    }
+    to {
+      -webkit-box-shadow: 0px 1px 3px 0px #d12a0a;
+      -moz-box-shadow:    0px 1px 3px 0px #d12a0a;
+      box-shadow:         0px 1px 3px 0px #d12a0a;
+    }
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LoadingLine from './LoadingLine';
+import LoadingLine from './LoadingLine.js';
 import './App.css';
 
 class App extends Component {
@@ -11,6 +11,7 @@ class App extends Component {
     }
     this.lanzaFin = this.lanzaFin.bind(this);
     this.lanzaError = this.lanzaError.bind(this);
+    this.reiniciar = this.reiniciar.bind(this);
   }
 
   lanzaFin () {
@@ -22,6 +23,13 @@ class App extends Component {
   lanzaError () {
     this.setState({
       isError: true
+    })
+  }
+
+  reiniciar () {
+    this.setState({
+      isError: false,
+      isFinish: false
     })
   }
 
@@ -40,6 +48,9 @@ class App extends Component {
         </p>
         <p className="App-intro">
           Pulsar para finalizar con error <button onClick={this.lanzaError}>Error</button>
+        </p>
+        <p className="App-intro">
+          Pulsar para iniciar o reiniciar <button onClick={this.reiniciar}>Inicia</button>
         </p>
       </div>
     );

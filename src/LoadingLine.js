@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './LoadingLine.css';
+import '../assets/css/LoadingLine.css';
 
 class LoadingLine extends Component {
 
@@ -9,35 +9,45 @@ class LoadingLine extends Component {
     this.calculate = this.calculate.bind(this);
     this.run = this.run.bind(this);
     this.finalize = this.finalize.bind(this);
-
+    this.init = this.init.bind(this);
     this.state = {
       porcentage: 0,
-      finish: false,
-      error: false
+      init: true
     }
   }
 
   componentDidMount() {
+    this.init()
+  }
+
+  init() {
     this.setState({
+      porcentage: 0,
+      init: true,
       runner: setInterval(this.run, 500)
     })
   }
 
   componentDidUpdate() {
-    if (this.props.finish === true && this.state.finish !== true) {
+    if (this.props.finish && !this.props.error && this.state.init) {
       this.finalize();
       clearInterval(this.state.runner);
     }
-    if (this.props.error === true && this.state.error !== true) {
+    if (this.props.error && !this.props.finish && this.state.init) {
       this.error();
       clearInterval(this.state.runner);
+    }
+    if (!this.props.error && !this.props.finish && !this.state.init) {
+      this.init()
     }
   }
 
   run() {
     //TODO: Function coefficient calc.
     let coefficient = 30;
-    if (this.state.porcentage > 80) {
+    if (this.state.porcentage > 90) {
+      coefficient = 0;
+    } else if (this.state.porcentage > 80) {
       coefficient = 0.1;
     } else if (this.state.porcentage > 70) {
       coefficient = 1;
@@ -66,18 +76,19 @@ class LoadingLine extends Component {
   finalize() {
     this.setState({
       porcentage: 100,
-      finish: true
+      init: false
     });
   }
 
   error() {
     this.setState({
-      error: true
+      init: false
     });
   }
 
   render() {
-    let claseFin = this.state.porcentage >= 100 ? "ll-hide" : "";
+    //afinar el inicio
+    let claseFin = this.props.finish ? "ll-hide" : "";
     let claseError = this.props.error ? "ll-error ll-hide" : "";
     return (
       <div className="ll-container">

@@ -9,13 +9,14 @@
   left: 0px;
   height: 2px;
   background-color: #d12a0a;
-  transition: 0.5s width ease 0s, 0.3s height 0.5s;
+  transition: 0.5s width ease 0s;
   -webkit-box-shadow: 0px 1px 3px 0px #d12a0a;
   -moz-box-shadow:    0px 1px 3px 0px #d12a0a;
   box-shadow:         0px 1px 3px 0px #d12a0a;
 }
 .ll-hide {
   height: 0;
+  transition: 0.3s height 0.5s
 }
 .ll-error {
   transition: 0.7s height 3s;
